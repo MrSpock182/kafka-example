@@ -1,0 +1,20 @@
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+  kafka:
+    bootstrap-servers: localhost:9092
+    topic:
+      foo: foo
+      foo-retry: foo_retry
+    group-id: kafka
+    consumer:
+      auto-offset-reset: earliest
+      bootstrap-servers: ${spring.kafka.bootstrap-servers}
+      properties.spring.json.add.type.headers: false
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      bootstrap-servers: ${spring.kafka.bootstrap-servers}
+      properties.spring.json.add.type.headers: false

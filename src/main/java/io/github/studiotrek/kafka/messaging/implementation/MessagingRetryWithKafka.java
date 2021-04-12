@@ -15,7 +15,7 @@ public class MessagingRetryWithKafka<T> implements MessagingRetry<T> {
     }
 
     @Override
-    public void retry(String topic, T t) {
+    public void sendRetry(String topic, T t) {
         kafkaTemplate.send(topic + "_retry", UUID.randomUUID().toString(), t);
     }
 }

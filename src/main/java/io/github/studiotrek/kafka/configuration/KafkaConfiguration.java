@@ -1,6 +1,5 @@
 package io.github.studiotrek.kafka.configuration;
 
-import io.github.studiotrek.kafka.data.Foo;
 import org.apache.kafka.common.TopicPartition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +17,7 @@ public class KafkaConfiguration {
 
     @Bean
     public SeekToCurrentErrorHandler errorHandler(
-            final KafkaTemplate<String, Foo> template
+            final KafkaTemplate<Object, Object> template
     ) {
         DeadLetterPublishingRecoverer recovery = new DeadLetterPublishingRecoverer(template,
                 (consumerRecord, exception) -> new TopicPartition(

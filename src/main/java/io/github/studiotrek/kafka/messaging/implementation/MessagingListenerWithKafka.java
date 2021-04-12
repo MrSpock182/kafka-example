@@ -25,7 +25,7 @@ public class MessagingListenerWithKafka implements MessagingListener<Foo, String
     ) {
         System.out.println("Received: " + foo.getName());
         if (foo.getName().startsWith("RONALDO")) {
-            retryProducer.retry(record.topic(), foo);
+            retryProducer.sendRetry(record.topic(), foo);
         }
     }
 

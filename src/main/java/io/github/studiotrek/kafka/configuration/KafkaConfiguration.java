@@ -16,17 +16,23 @@ import org.springframework.util.backoff.FixedBackOff;
 public class KafkaConfiguration {
 
     @Bean
-    public SeekToCurrentErrorHandler errorHandler(
-            final KafkaTemplate<Object, Object> template
-    ) {
-        DeadLetterPublishingRecoverer recovery = new DeadLetterPublishingRecoverer(template,
-                (consumerRecord, exception) -> new TopicPartition(
-                        consumerRecord.topic().replace("_retry", "") + "_dead-letter",
-                        0));
+    public SeekToCurrentErrorHandler errorHandler(final KafkaTemplate<Object, Object> template) {
         return new SeekToCurrentErrorHandler(
-                recovery,
-                new FixedBackOff(1000, 3)
-        );
+                new DeadLetterPublishingRecoverer(template, (consumerRecord, exception) ->
+                        new TopicPartition(
+                                consumerRecord.topic().replace("_retry", "") + "_dead-letter",
+                                consumerRecord.partition()
+                        )
+                ),
+                new FixedBackOff(computeInterval(), 4));
+    }
+
+//    private long computeInterval() {
+//        return 10000;
+//    }
+
+    private long computeInterval() {
+        return 2 * 60 * 60 * 1000L;
     }
 
     @Bean

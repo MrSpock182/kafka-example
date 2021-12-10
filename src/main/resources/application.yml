@@ -8,9 +8,12 @@ spring:
     topic:
       foo: foo
       foo-retry: foo_retry
-    group-id: kafka
+    group-id: foo-group
+    listener:
+      concurrency: 2
     consumer:
-      auto-offset-reset: earliest
+      auto-offset-reset: latest
+      enable-auto-commit: false
       bootstrap-servers: ${spring.kafka.bootstrap-servers}
       properties.spring.json.add.type.headers: false
     producer:

@@ -4,8 +4,6 @@ import io.github.studiotrek.kafka.messaging.MessagingRetry;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.UUID;
-
 @Component
 public class MessagingRetryWithKafka<T> implements MessagingRetry<T> {
     private final KafkaTemplate<String, T> kafkaTemplate;
@@ -15,7 +13,7 @@ public class MessagingRetryWithKafka<T> implements MessagingRetry<T> {
     }
 
     @Override
-    public void sendRetry(String topic, T t) {
-        kafkaTemplate.send(topic + "_retry", UUID.randomUUID().toString(), t);
+    public void sendRetry(String topic, String id, T t) {
+        kafkaTemplate.send(topic + "_retry", id, t);
     }
 }

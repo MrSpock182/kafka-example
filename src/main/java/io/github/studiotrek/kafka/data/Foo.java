@@ -1,54 +1,33 @@
 package io.github.studiotrek.kafka.data;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.io.Serializable;
-import java.util.Objects;
+import java.time.LocalDateTime;
 
 public class Foo implements Serializable {
-    private String id;
-    private String name;
+    private final String id;
+    private final String name;
+    private final LocalDateTime date;
 
-    public Foo() {
-    }
-
-    public Foo(String id, String name) {
+    public Foo(
+            @JsonProperty("id") String id,
+            @JsonProperty("name") String name,
+            @JsonProperty("date") LocalDateTime date) {
         this.id = id;
         this.name = name;
+        this.date = date;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Foo foo = (Foo) o;
-        return Objects.equals(id, foo.id) && Objects.equals(name, foo.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
-    }
-
-    @Override
-    public String toString() {
-        return "Foo{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                '}';
+    public LocalDateTime getDate() {
+        return date;
     }
 }

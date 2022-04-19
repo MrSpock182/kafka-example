@@ -6,10 +6,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class JsonMapper {
-
     @Bean
     public ObjectMapper mapper() {
         return new ObjectMapper();
     }
-
 }

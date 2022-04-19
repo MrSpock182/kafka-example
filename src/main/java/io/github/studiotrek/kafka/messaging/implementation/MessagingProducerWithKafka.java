@@ -6,13 +6,10 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.header.internals.RecordHeader;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
-import org.springframework.util.concurrent.ListenableFutureCallback;
 
 @Component
 public class MessagingProducerWithKafka implements MessagingProducer<Foo> {
-
     private final String topic;
     private final KafkaTemplate<String, Foo> kafkaTemplate;
 
@@ -28,7 +25,5 @@ public class MessagingProducerWithKafka implements MessagingProducer<Foo> {
         ProducerRecord<String, Foo> producerRecord = new ProducerRecord<>(topic, foo.getId(), foo);
         producerRecord.headers().add(new RecordHeader("user", "xpto".getBytes()));
         kafkaTemplate.send(producerRecord);
-//        kafkaTemplate.send(topic, foo.getId(), foo);
     }
-
 }

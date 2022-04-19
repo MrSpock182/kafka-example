@@ -27,10 +27,6 @@ public class KafkaConfiguration {
                 new FixedBackOff(computeInterval(), 4));
     }
 
-//    private long computeInterval() {
-//        return 10000;
-//    }
-
     private long computeInterval() {
         return 2 * 60 * 60 * 1000L;
     }

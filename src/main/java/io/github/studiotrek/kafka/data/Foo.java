@@ -1,21 +1,18 @@
 package io.github.studiotrek.kafka.data;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public class Foo implements Serializable {
     private final String id;
     private final String name;
+    private final String description;
     private final LocalDateTime date;
 
-    public Foo(
-            @JsonProperty("id") String id,
-            @JsonProperty("name") String name,
-            @JsonProperty("date") LocalDateTime date) {
+    public Foo(String id, String name, String description, LocalDateTime date) {
         this.id = id;
         this.name = name;
+        this.description = description;
         this.date = date;
     }
 
@@ -25,6 +22,10 @@ public class Foo implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public LocalDateTime getDate() {

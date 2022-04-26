@@ -1,0 +1,26 @@
+{
+  "type": "record",
+  "namespace": "io.github.studiotrek.kafka.data",
+  "name": "FooAvroV1",
+  "version": 1,
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "doc": "valor de identificacao"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "default": "",
+      "doc": "nome do foo"
+    },
+    {
+      "name": "country",
+      "type": "string",
+      "default": "",
+      "doc": "pais do foo"
+    }
+  ]
+}

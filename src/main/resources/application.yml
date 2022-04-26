@@ -1,23 +1,33 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     serialization:
       write_dates_as_timestamps: false
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: localhost:29092
+    acksConfig: all
     topic:
       foo: foo
-      foo-retry: foo_retry
     group-id: foo-group
-    listener:
-      concurrency: 2
+#    listener:
+#      concurrency: 2
+    properties:
+      schema:
+        registry:
+          url: http://0.0.0.0:8085
+      specific:
+        avro:
+          reader: true
+    producer:
+      bootstrap-servers: ${spring.kafka.bootstrap-servers}
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
     consumer:
+      bootstrap-servers: ${spring.kafka.bootstrap-servers}
       auto-offset-reset: latest
       enable-auto-commit: false
-      bootstrap-servers: ${spring.kafka.bootstrap-servers}
-      properties.spring.json.add.type.headers: false
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      bootstrap-servers: ${spring.kafka.bootstrap-servers}
-      properties.spring.json.add.type.headers: false
+      ack-mode: MANUAL
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer

@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: kafka
   main:
     allow-bean-definition-overriding: true
   jackson:
@@ -8,11 +10,12 @@ spring:
   kafka:
     bootstrap-servers: localhost:29092
     acksConfig: all
-    topic:
-      foo: foo
-    group-id: foo-group
-#    listener:
-#      concurrency: 2
+    topics:
+      foo-details: foo-details
+      foo-summary: foo-summary
+    groups:
+      foo-details-group: foo-details-group
+      foo-summary-group: foo-summary-group
     properties:
       schema:
         registry:
@@ -28,6 +31,5 @@ spring:
       bootstrap-servers: ${spring.kafka.bootstrap-servers}
       auto-offset-reset: latest
       enable-auto-commit: false
-      ack-mode: MANUAL
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer

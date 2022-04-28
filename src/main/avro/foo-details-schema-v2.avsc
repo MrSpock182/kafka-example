@@ -1,0 +1,54 @@
+{
+  "type": "record",
+  "namespace": "io.github.studiotrek.kafka.data",
+  "name": "FooDetailsAvro",
+  "version": 2,
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "default": "",
+      "doc": "valor de identificacao"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "default": "",
+      "doc": "nome do foo"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "default": "",
+      "doc": "descricao do foo"
+    },
+    {
+      "name": "products",
+      "type": {
+        "type": "array",
+        "items": {
+          "name": "ProductAvro",
+          "type": "record",
+          "fields": [
+            {
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "name": "value",
+              "type": "double"
+            }
+          ]
+        }
+      },
+      "doc": "lista de produtos"
+    },
+    {
+      "name": "date",
+      "type": "long",
+      "logicalType": "date",
+      "default": 0,
+      "doc": "data de cadastro"
+    }
+  ]
+}

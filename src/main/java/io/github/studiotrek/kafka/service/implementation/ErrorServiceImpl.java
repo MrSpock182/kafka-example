@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ErrorServiceImpl implements ErrorService {
-
     private final ApplicationEventPublisher publisher;
 
     public ErrorServiceImpl(ApplicationEventPublisher publisher) {

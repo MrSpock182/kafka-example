@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DatabasePersistServiceImpl implements DatabasePersistService {
-
     @Async
     @Override
     @EventListener

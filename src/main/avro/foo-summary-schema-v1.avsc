@@ -1,8 +1,8 @@
 {
   "type": "record",
   "namespace": "io.github.studiotrek.kafka.data",
-  "name": "FooAvroV2",
-  "version": 2,
+  "name": "FooSummaryAvro",
+  "version": 3,
   "fields": [
     {
       "name": "id",
@@ -21,6 +21,12 @@
       "type": "string",
       "default": "",
       "doc": "descricao do foo"
+    },
+    {
+      "name": "products",
+      "type": "double",
+      "default": 0.0,
+      "doc": "valor dos produtos agrupados"
     },
     {
       "name": "date",

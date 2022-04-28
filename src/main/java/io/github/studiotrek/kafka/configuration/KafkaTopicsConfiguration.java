@@ -2,6 +2,7 @@ package io.github.studiotrek.kafka.configuration;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.TopicBuilder;
@@ -10,11 +11,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-public class KafkaCreateTopicsConfiguration {
+public class KafkaTopicsConfiguration {
+
+    private final String fooDetails;
+
+    public KafkaTopicsConfiguration(@Value("${spring.kafka.topics.foo-details}") final String fooDetails) {
+        this.fooDetails = fooDetails;
+    }
+
     @Bean
     public NewTopic topicExample() {
         return TopicBuilder
-                .name("foo")
+                .name(fooDetails)
                 .partitions(3)
                 .replicas(1)
                 .compact()

@@ -1,7 +1,7 @@
 {
   "type": "record",
   "namespace": "io.github.studiotrek.kafka.data",
-  "name": "FooAvroV1",
+  "name": "FooDetailsAvro",
   "version": 1,
   "fields": [
     {
@@ -17,10 +17,17 @@
       "doc": "nome do foo"
     },
     {
-      "name": "country",
+      "name": "description",
       "type": "string",
       "default": "",
-      "doc": "pais do foo"
+      "doc": "descricao do foo"
+    },
+    {
+      "name": "date",
+      "type": "long",
+      "logicalType": "date",
+      "default": 0,
+      "doc": "data de cadastro"
     }
   ]
 }

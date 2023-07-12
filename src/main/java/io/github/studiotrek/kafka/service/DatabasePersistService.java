@@ -1,7 +1,7 @@
 package io.github.studiotrek.kafka.service;
 
-import io.github.studiotrek.kafka.event.implementation.ErrorEvent;
+import io.github.studiotrek.kafka.event.implementation.SummaryEvent;
 
 public interface DatabasePersistService {
-    void persist(ErrorEvent event);
+    void persist(SummaryEvent event);
 }

@@ -1,3 +1,6 @@
+server:
+  port: 8082
+
 spring:
   application:
     name: kafka
@@ -8,18 +11,13 @@ spring:
     serialization:
       write_dates_as_timestamps: false
   kafka:
-    bootstrap-servers: localhost:29092
-    acksConfig: all
+    bootstrap-servers: localhost:9092
     topics:
-      foo-details: foo-details
-      foo-summary: foo-summary
-    groups:
-      foo-details-group: foo-details-group
-      foo-summary-group: foo-summary-group
+      request-enrichment-receita: request-enrichment-receita
     properties:
       schema:
         registry:
-          url: http://0.0.0.0:8085
+          url: http://localhost:8081
       specific:
         avro:
           reader: true
@@ -27,9 +25,3 @@ spring:
       bootstrap-servers: ${spring.kafka.bootstrap-servers}
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
-    consumer:
-      bootstrap-servers: ${spring.kafka.bootstrap-servers}
-      auto-offset-reset: latest
-      enable-auto-commit: false
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer

@@ -1,7 +1,7 @@
 package io.github.studiotrek.kafka.service.implementation;
 
-import io.github.studiotrek.kafka.data.Foo;
-import io.github.studiotrek.kafka.event.implementation.ErrorEvent;
+import io.github.studiotrek.kafka.data.FooSummary;
+import io.github.studiotrek.kafka.event.implementation.SummaryEvent;
 import io.github.studiotrek.kafka.service.ErrorService;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -15,10 +15,10 @@ public class ErrorServiceImpl implements ErrorService {
     }
 
     @Override
-    public void error(final Foo foo) {
+    public void error(final FooSummary foo) {
         if (foo.getName().equals("Ronaldo")) {
             throw new RuntimeException();
         }
-        publisher.publishEvent(new ErrorEvent(foo));
+        publisher.publishEvent(new SummaryEvent(foo));
     }
 }

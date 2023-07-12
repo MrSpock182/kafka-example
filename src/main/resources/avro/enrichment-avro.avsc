@@ -1,0 +1,14 @@
+{
+  "type": "record",
+  "name": "EnrichmentAvro",
+  "version": 1,
+  "namespace": "br.com.avro",
+  "fields": [
+    {
+      "name": "cnpj",
+      "type": "string",
+      "default": "",
+      "doc": "CNPJ para enriquecer"
+    }
+  ]
+}

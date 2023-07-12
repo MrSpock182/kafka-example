@@ -1,7 +1,7 @@
 package io.github.studiotrek.kafka.service;
 
-import io.github.studiotrek.kafka.data.Foo;
+import io.github.studiotrek.kafka.data.FooSummary;
 
 public interface ErrorService {
-    void error(Foo foo);
+    void error(FooSummary foo);
 }

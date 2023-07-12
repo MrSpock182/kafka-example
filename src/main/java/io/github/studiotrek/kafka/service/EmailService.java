@@ -1,7 +1,7 @@
 package io.github.studiotrek.kafka.service;
 
-import io.github.studiotrek.kafka.event.implementation.ErrorEvent;
+import io.github.studiotrek.kafka.event.implementation.SummaryEvent;
 
 public interface EmailService {
-    void send(ErrorEvent event);
+    void send(SummaryEvent event);
 }
